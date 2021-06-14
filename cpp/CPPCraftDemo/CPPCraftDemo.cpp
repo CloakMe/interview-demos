@@ -19,7 +19,7 @@
 //QBRecordCollection QBFindMatchingRecords(const QBRecordCollection& records, const std::string& columnName, const std::string& matchString)
 //{
 //	QBRecordCollection result;
-//	for( std::list<QBRecord>::const_iterator rec = records.begin(); rec != records.end(); rec++ )
+//	for( std::vector<QBRecord>::const_iterator rec = records.begin(); rec != records.end(); rec++ )
 //	{
 //		if( columnName == "column0" )
 //		{
