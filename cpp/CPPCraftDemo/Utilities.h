@@ -20,18 +20,6 @@ struct Range
 bool CompareQBRecords(const QBRecord & record1, const QBRecord & record2, Column column);
 
 /**
-	Unfortunately when I search for a string under specified column, I also want to display all rows in the database that contain the
-	searched string as a substring /not only equal/ as shown in the initial code (see old verstion of QBFindMatchingRecords which is currently in 
-	QBRecordCollection::QBFindMatchingRecords ). 
-	I use std::string::find.
-
-	Otherwise,
-	To check equality (for strings and numbers) one could simply use:
-	CompareQBRecords( record1, record2, column) && CompareQBRecords( record2, record1, column).
-*/
-bool EqualQBRecords(const QBRecord & record1, const QBRecord & record2, Column column);
-
-/**
 	might be possible to use std::stable_sort
 	https://stackoverflow.com/questions/1577475/c-sorting-and-keeping-track-of-indexes
 	The method sorts the indices with respect to a collection of QBRecords.

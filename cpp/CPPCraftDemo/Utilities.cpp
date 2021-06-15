@@ -34,37 +34,37 @@ bool CompareQBRecords(const QBRecord & record1, const QBRecord & record2, Column
 	return false;
 }
 
-bool EqualQBRecords(const QBRecord & record1, const QBRecord & record2, Column column)
-{
-	size_t result = 0;
-	switch( column )
-	{
-	case Column::column0:
-		if( record1.column0 == record2.column0 )
-			return true;
-		//else
-		return false;
-	case Column::column1:
-		result = record1.column1.find( record2.column1 );
-		if( result != std::string::npos )
-			return true;
-		//else
-		return false;
-	case Column::column2:
-		if( record1.column2 == record2.column2 )
-			return true;
-		//else
-		return false;
-	case Column::column3:
-		result = record1.column3.find( record2.column3 );
-		if( result != std::string::npos )
-			return true;
-		//else
-		return false;
-	}
-
-	return false;
-}
+//bool EqualQBRecords(const QBRecord & record1, const QBRecord & record2, Column column)
+//{
+//	size_t result = 0;
+//	switch( column )
+//	{
+//	case Column::column0:
+//		if( record1.column0 == record2.column0 )
+//			return true;
+//		//else
+//		return false;
+//	case Column::column1:
+//		result = record1.column1.find( record2.column1 );
+//		if( result != std::string::npos )
+//			return true;
+//		//else
+//		return false;
+//	case Column::column2:
+//		if( record1.column2 == record2.column2 )
+//			return true;
+//		//else
+//		return false;
+//	case Column::column3:
+//		result = record1.column3.find( record2.column3 );
+//		if( result != std::string::npos )
+//			return true;
+//		//else
+//		return false;
+//	}
+//
+//	return false;
+//}
 
 void QuickSort(const QBRecord* arr, uint* indices, int size, Column column )
 {
@@ -127,16 +127,16 @@ Range BinarySearch( const QBRecord* arr, const uint* indices, int size, Column c
 	{
 		int mid = left + (right - left) / 2;
 
-		if( EqualQBRecords( arr[indices[mid]], x, column ) ) // equal
+		if( CompareQBRecords( arr[indices[mid]], x, column ) && CompareQBRecords( x, arr[indices[mid]], column ) ) // equal
 		{
 			uint i = 1;
-			if( EqualQBRecords( arr[indices[left]], x, column ) )
+			if( CompareQBRecords( arr[indices[left]], x, column ) && CompareQBRecords( x, arr[indices[left]], column ) )
 			{
 				range.start = left;
 			}
 			else
 			{
-				while( EqualQBRecords( arr[indices[mid-i]], x, column ) )
+				while( CompareQBRecords( arr[indices[mid-i]], x, column ) && CompareQBRecords( x, arr[indices[mid-i]], column ) )
 				{
 					i++;
 				}
@@ -144,13 +144,13 @@ Range BinarySearch( const QBRecord* arr, const uint* indices, int size, Column c
 			}
 			
 			uint j = 1;
-			if( EqualQBRecords( arr[indices[right]], x, column ) )
+			if( CompareQBRecords( arr[indices[right]], x, column ) && CompareQBRecords( x, arr[indices[right]], column ) )
 			{
 				range.stop = right;
 			}
 			else
 			{
-				while( EqualQBRecords( arr[indices[mid+j]], x, column ) )
+				while( CompareQBRecords( arr[indices[mid+j]], x, column ) && CompareQBRecords( x, arr[indices[mid+j]], column ) )
 				{
 					j++;
 				}

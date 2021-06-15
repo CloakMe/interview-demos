@@ -42,6 +42,8 @@ public:
 	*/
 	QBRecordCollection QBFindMatchingRecords(const Column& column, const std::string& matchString );
 
+	QBRecordCollection QBFindMatchingRecordsNew( const std::string& columnName, const std::string& matchString);
+
 	/**
 		id - id of the element that has to be deleted
 	*/

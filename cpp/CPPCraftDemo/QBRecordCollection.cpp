@@ -102,6 +102,59 @@ QBRecordCollection QBRecordCollection::QBFindMatchingRecords(const Column& col, 
 	return result;
 }
 
+QBRecordCollection QBRecordCollection::QBFindMatchingRecordsNew( const std::string& columnName, const std::string& matchString)
+{
+	std::vector<QBRecord> result;
+	if( mRecordCollection.size() == 0 )
+		return result;
+
+	if( columnName == "column0" )
+	{
+		uint matchValue = std::stoul(matchString);
+		for( std::vector<QBRecord>::const_iterator rec = mRecordCollection.begin(); rec != mRecordCollection.end(); rec++ )
+		{
+			if ( matchValue == rec->column0 )
+			{
+				result.emplace_back( *rec );
+			}
+		}
+	} 
+	else if (columnName == "column1") 
+	{
+		for( std::vector<QBRecord>::const_iterator rec = mRecordCollection.begin(); rec != mRecordCollection.end(); rec++ )
+		{
+			if( rec->column1.find(matchString) != std::string::npos )
+			{
+				result.emplace_back( *rec );
+			}
+		}
+	} 
+	else if (columnName == "column2") 
+	{
+		long matchValue = std::stol( matchString );
+		for( std::vector<QBRecord>::const_iterator rec = mRecordCollection.begin(); rec != mRecordCollection.end(); rec++ )
+		{
+			if( matchValue == rec->column2 )
+			{
+				result.emplace_back( *rec );
+			}
+		}
+	} 
+	else if (columnName == "column3") 
+	{
+		for( std::vector<QBRecord>::const_iterator rec = mRecordCollection.begin(); rec != mRecordCollection.end(); rec++ )
+		{
+			if( rec->column3.find(matchString) != std::string::npos )
+			{
+				result.emplace_back( *rec );
+			}
+		}
+	}
+	
+
+	return result;
+}
+
 void QBRecordCollection::QBDeleteRecordByID(uint id)
 {
 	if( mRecordCollection.size() == 0 )
