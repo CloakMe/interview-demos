@@ -11,7 +11,7 @@ public:
 	QBRecordCollection( const std::vector<QBRecord> & recordCollection );
 private:
 
-	std::vector<QBRecord> mRecordCollection;
+	std::vector<QBRecord> mRecordCollection; //vector that holds the current collection
 	std::vector< std::vector<uint> > mOrderedColumnIndices; //when indices <mOrderedColumnIndices[j]> are applied on column <j>, it becomes ascending ordered.
 
 
@@ -26,22 +26,25 @@ public:
 	/**
 	This is the old function
 		Return records that contains a string in the StringValue field
-		records - the initial set of records to filter
 		columnName - specifies the column
 		matchString - the string to search for
 	*/
 	QBRecordCollection QBFindMatchingRecords(const std::string& columnName, const std::string& matchString);
 
 	/**
-	This is the new function
+	This is the new function. It is has O(log n) complexity. It uses preordered columns.
 		Return records that contains a string in the StringValue field
-		records - the initial set of records to filter
 		column - specifies the column
-		orderedIndices - indices which order the records so that the current column gains ascending order
 		matchString - the string to search for
 	*/
 	QBRecordCollection QBFindMatchingRecords(const Column& column, const std::string& matchString );
 
+	/**
+	This is another new function which is simmilar to the old one. It has still linear O(n) complexity.
+		Return records that contains a string in the StringValue field
+		column - specifies the column
+		matchString - the string to search for
+	*/
 	QBRecordCollection QBFindMatchingRecordsNew( const std::string& columnName, const std::string& matchString);
 
 	/**
